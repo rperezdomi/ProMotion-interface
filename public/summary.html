@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Werium Assistive Solutions</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/google-fonts-nunito.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/google-fonts-montserrat.css">
+    <link rel="stylesheet" href="assets/css/cloudflareAjaxBaguetteboxbaguetteBox.min.css">
+    <link rel="stylesheet" href="assets/css/smoothproducts.css">
+    <link rel="stylesheet" href="assets/css/move_arrows.css">
+    <link rel="stylesheet" href="assets/css/button_styles.css">
+
+
+    <!-- Solid Fontawesome icons-->
+    <script src="assets/js/v5.15.1jsall.js" data-auto-replace-svg></script>
+    <link rel="stylesheet" href="assets/css/v508csssolid.css">
+    
+    <style>
+      .flex-container {
+        display: flex;
+        align-items: center; /* Use another value to see the result */
+        width: 60%;
+        height: 600px;
+      }
+    </style>
+    
+</head>
+
+<body id="page-top" >
+    <div id="wrapper">
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <nav class="navbar navbar-light navbar-expand shadow mb-4 topbar static-top" style="background-color: #4e73df;">
+					<button class="btn-noStyle"><a href="users.html"><span style="color: white"><i class="fas fa-arrow-left fa-3x"></i></span></a></button>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<span style="color: white"><b>BACK</b> </span>
+                    <div class="container-fluid">
+                        <ul class="nav navbar-nav flex-nowrap ml-auto">
+                            <div class="d-none d-sm-block topbar-divider"></div>
+                            <li class="nav-item dropdown no-arrow" role="presentation">
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><img class="img" src="assets/img/letras.png" style= "height:80%"><img class="img" src="assets/img/logoblanco.png" style= "height:80%"></a>
+                               
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div>
+                <p></p>
+                </div>
+                <center>
+					<div class="col-lg-10 mx-auto" style="width:40%">
+						<div class="card mb-3">
+							<div class="card-header d-flex justify-content-between align-items-center">
+								<h5 class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> DATOS DEL USUARIO  </h5>
+							</div>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+							<div class="mb-3 d-flex centered">
+								<h4>Usuario: &nbsp;</h4>
+								<h4> </h4>
+								<h4 id="patient-name" style="color: #4e73df">Nombre del Paciente</h4>
+							</div>
+							<div class="mb-3 d-flex centered">
+								<h4>Fecha: &nbsp;</h4>
+								<h4> </h4>
+								<h4 id="patient-name" style="color: #4e73df">03/04/2022</h4>
+							</div>
+							<div class="mb-3 d-flex centered">
+								<h4>Estudio: &nbsp;</h4>
+								<h4> </h4>
+								<h4 id="patient-name" style="color: #4e73df">Cervical</h4>
+							</div>
+						</div>
+					</div>
+					   
+					<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<!-- TABS PARA LA NEVEGACION DE LAS DIFERENTES TABLAS-->
+					<ul class="nav nav-tabs" id="myTab_graphs" role="tablist">
+						<li class="nav-item" role="presentation">
+							<a class="nav-link active" id="flexext_tab" data-toggle="tab" href="#flexext" role="tab" aria-controls="flexext" aria-selected="true">  FLEXOEXTENSION </a>
+						</li>
+						<li class="nav-item" role="presentation">
+							<a class="nav-link " id="rotacion_tab" data-toggle="tab" href="#rotacion" role="tab" aria-controls="rotacion" aria-selected="false">  ROTACIÓN </a>
+						</li>
+						<li class="nav-item" role="presentation">
+							<a class="nav-link " id="inclinacion_tab" data-toggle="tab" href="#inclinacion" role="tab" aria-controls="inclinacion" aria-selected="false"> INCLINACIÓN </a>
+						</li>
+					</ul>
+					<!-- TABS CONTENT-->
+					<div class="tab-content">
+						<!-- FLEXOEXTENSION -->
+                        <div class="tab-pane fade show active" id="flexext" role="tabpanel">
+							<div id="flexext_card" class="card shadow mb-4">
+								
+							</div>
+						</div>
+						<!-- ROTACION -->
+                        <div class="tab-pane fade" id="rotacion" role="tabpanel">
+							<div id="rotacion_card" class="card shadow mb-4" >
+							</div>
+						</div>
+						<!-- INCLINACION -->
+                        <div class="tab-pane fade" id="inclinacion" role="tabpanel">
+							<div id="inclinacion_card" class="card shadow mb-4" >
+							</div>
+						</div>						
+				</center>            
+            </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>Copyright © Werium Assistive Solutions 2021</span></div>
+                </div>
+            </footer>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/cdnjscloudflareAjaxLibsChartjs280Chart.bundle.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/cdnjsCloudflareAjaxLibsJquery-easing141Jquery.easing.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="summary.js"></script>
+
+</body>
+
+</html>
