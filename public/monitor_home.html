@@ -33,7 +33,7 @@
 <body id="page-top" >
     <div id="wrapper">
         <div class="d-flex flex-column" id="content-wrapper">
-            <div id="content">
+            <div id="content" class="modal-area">
                 <nav class="navbar navbar-light navbar-expand shadow mb-4 topbar static-top" style="background-color: #4e73df;">
 					<button class="btn-noStyle"><a href="ProMotion_settings.html"><span style="color: white"><i class="fas fa-arrow-left fa-3x"></i></span></a></button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -49,6 +49,23 @@
                         </ul>
                     </div>
                 </nav>
+                 <!-- Start Modal if the sessions in study case exceeds 3  -->
+                <div id="modal-sessions-limit" class="modal fade" style="transform: translate(0%,50%)" role = "dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="container card shadow-lg o-hidden border-0 my-5 p-5">
+                                    <div class="text-center">
+                                        <h4 id="fild-undefined" class="text-dark mb-4"> The selected study case already has 3 sessions. Please, to continue recorging, go back and create a new one. </h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div>
                 <p></p>
                 </div>

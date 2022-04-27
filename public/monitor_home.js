@@ -2,6 +2,7 @@ const socket = io();
 
 var global_config_data = {}
 var global_data = "alfa"
+var global_patient_info = {};
 
 var is_imu1_connected = false;
 var is_imu2_connected = false;
@@ -130,17 +131,14 @@ window.onload = function(){
 		//} 	
 		
 		console.log(global_config_data)
-		if(document.referrer != '192.168.43.1:3000/ProMotion_settings.html' | document.referrer != 'localhost:3000/ProMotion_settings.html' ){
-			location.replace("localhost:3000/ProMotion_settings.html");
-			location.replace("192.168.43.1:3000/ProMotion_settings.html");
-			console.log("previous page was not settings. Lets try to connect the sensor/s")
-			//socket.emit('ProMotion:connect_imu1', {sensor_name: global_config_data.sensor_1})
-			
-
-		} else {
-			console.log("previous page was "+ document.referrer)
-		}
+		socket.emit('ProMotion:connect_imu1', {sensor_name: global_config_data.sensor_1})
+		socket.emit("get_patient_info", {user_name: global_config_data.user_name_surname})                            
+	
 	});
+	
+	socket.on('set_patient_info', (data) => {
+		global_patient_info = data;
+	})
 
 	
 	//*********************************//
@@ -368,12 +366,31 @@ window.onload = function(){
 		}
 	}	
 	*/
+	// sessions in study case
+    socket.on("settings:answer_sessions_in_caseStudy", function(data){ 
+        console.log(data.sessions_int)
+        let studyCase_sessions = data.sessions_int;
+        
+        if(studyCase_sessions <3){
+            socket.emit('ProMotion:start');
+			document.getElementById("record").disabled = true;
+			document.getElementById("stop").disabled = false;
+			document.getElementById("go_to_dashboard").style.display="none"; 
+        } else {
+            // The current study case has already 3 sessions. Please, create a new one.
+            $('#modal-sessions-limit').modal('show'); 
+            $('.modal-backdrop').appendTo('.modal_area');
+        }
+    })
+    
 	document.getElementById("record").onclick = function() {
-		socket.emit('ProMotion:start');
-		document.getElementById("record").disabled = true;
-		document.getElementById("stop").disabled = false;
-		document.getElementById("go_to_dashboard").style.display="none";
 		
+		// check that the number of sessions in the study case doesnt exceeds 3
+		socket.emit("settings:ask_sessions_in_caseStudy", {
+			caseStudy: global_config_data.case_study ,
+			user_id: global_patient_info.user_id,
+			joint: global_config_data.joint
+		})	
 	}
 	document.getElementById("stop").onclick = function() {
 		socket.emit('ProMotion:stop');
