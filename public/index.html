@@ -74,15 +74,14 @@
         <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
             <div class="container-fluid d-flex flex-column p-0">
                 <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
-                    <img class="img" style= "height:250%" src="assets/img/SWALKER-logo2.png">
-                    <div class="sidebar-brand-text mx-3"><span>SWalker</span></div>
+                    
+                    <div class="sidebar-brand-text mx-3"><span></span></div>
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html" style="display:none;"><i class="fas fa-arrow-left"></i><span> Página de inicio</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="users.html"><i class="fas fa-child"></i><span> <u> Usuarios </u></span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="therapy_settings.html"><i class="fas fa-clinic-medical"></i><span> Terapia </span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html"><i class="fas fa-info"></i><span> Ayuda </span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="users.html"><i class="fas fa-child"></i><span> <u> Study Cases </u></span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="ProMotion_settings.html"><i class="fas fa-clinic-medical"></i><span> ProMotion </span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="about.html"><i class="fas fa-info"></i><span> About </span></a></li>
 
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
@@ -121,14 +120,14 @@
 
                             </div>
 
-                            <!--/////////////////////////////////////////////////  PATIENT ////////////////////////////////////////////////////////////////////////////////-->
+                            <!--/////////////////////////////////////////////////  user ////////////////////////////////////////////////////////////////////////////////-->
 
-                            <!-- Modal Add Patient -->
-                            <div class="modal fade" id="modaladdpatient" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <!-- Modal Add user -->
+                            <div class="modal fade" id="modaladduser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Añadir Paciente</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">New User</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -139,98 +138,36 @@
                                         <form>
                                             <!-- Input type text NAME -->
                                             <div class="form-group">
-                                                <label for="FNPatient">Nombre</label>
-                                                <input type="text" class="form-control" name="FNPatient" id="FNPatient" placeholder="Nombre" required>
+                                                <label for="FNuser">Name</label>
+                                                <input type="text" class="form-control" name="FNuser" id="FNuser" placeholder="Name" required>
                                             </div>
                                             
-                                            <!-- Input type text SURNAME-->
+                                            <!-- Input type text SURNAME 1-->
                                             <div class="form-group">
-                                                <label for="LNPatient">Primer Apellido</label>
-                                                <input type="text" class="form-control" name="LNPatient" id="LNPatient" placeholder="Apellido" required>
+                                                <label for="LNuser1">Surname 1</label>
+                                                <input type="text" class="form-control" name="LN1user" id="LN1user" placeholder="Surname 1" required>
+                                            </div>
+                                            <!-- Input type text SURNAME 2-->
+                                            <div class="form-group">
+                                                <label for="LNuser2">Surname 2</label>
+                                                <input type="text" class="form-control" name="LN2user" id="LN2user" placeholder="Surname 2" required>
                                             </div>
                                             <!-- Input type text AGE and GENDER-->
                                             <div class="form-row">
 												<div class="col">
 													<div class="form-group">
-														<label for="patient_age">Edad</label>
-														<input type="text" class="form-control" name="AgePatient" id="AgePatient" placeholder="0" required>
+														<label for="date_of_birth">Date Of Birth</label>
+														<input type="date" id="birthday" name="birthday">
 													</div>
 												</div>
 												<div class="col">
 													<div class="form-group">
-														<label for="FNPatient">Sexo</label>
+														<label for="FNuser">Gender</label>
 														<br>&nbsp;
 														<select class="btn  btn-primary" id="gender" class="form-control">
-															<option value="Hombre">Hombre</option>
-															<option value="Mujer">Mujer</option>
+															<option value="Hombre">Male</option>
+															<option value="Mujer">Female</option>
 														</select> 
-													</div>
-												</div>
-											</div>
-											
-											<!-- Input type text WEIGHT and HEIGHT-->
-											<div class="form-row">
-												<div class="col">
-													<div class="form-group">
-														<label for="weight">Peso (Kg)</label>
-														<input type="text" class="form-control" name="WeightPatient" id="WeightPatient" placeholder="0" required>
-													</div>
-												</div>
-												<div class="col">
-													<div class="form-group">
-														<label for="leg_length"> Altura (cm)</label>
-														<input type="text" class="form-control" name="HPatient" id="HeightPatient" placeholder="0" required>
-													</div>
-												</div>
-											</div>
-											
-											<!--Input type text ACTIVE ROM and LEG LENGTH--> 
-											<div class="form-row">
-												<div class="col">
-													<div class="form-group">
-														<label for="active_rom">ROM Activo (º)</label>
-														<input type="text" class="form-control" name="activeRom" id="activeRom" placeholder="0" required>
-													</div>
-												</div>
-												<div class="col">
-													<div class="form-group">
-														<label for="leg_length">Longitud de Pierna (cm)</label>
-														<input type="text" class="form-control" name="LLPatient" id="LLPatient" placeholder="0" required>
-													</div>
-												</div>
-												
-											</div>
-                                            <!-- Input type text TYPE OF SURGERY-->
-											<div class="form-row">
-												<div class="col">
-													<div class="form-group">
-														<label for="observations">Tipo de cirujía</label>
-														<input class="form-control" id="surgery" type="text" placeholder="Tipo de cirujía">
-													</div>
-												</div>
-												<div class="col">
-													<div class="form-group">
-														<label for="weight">Cadera Dañada</label>
-														<select class="btn  btn-primary" id="hip_joint" class="form-control">
-															<option value="Derecha">Derecha</option>
-															<option value="Izquierda">Izquierda</option>
-															<option selected value="No Aplica ">No aplica</option>
-														</select> 													
-													</div>
-												</div>
-											</div>
-                                            <!-- Input type text PHYSYCAL AND COGNITIVE STATUS-->
-											<div class="form-row">
-												<div class="col">
-													<div class="form-group">
-														<label for="estado_fisico">Estado Físico</label>
-														<input class="form-control" id="estado_fisico" type="text" placeholder="Estado fisico">
-													</div>
-												</div>
-												<div class="col">
-													<div class="form-group">
-														<label for="estado_cognitivo">Estado Cognitivo</label>
-														<input class="form-control" id="estado_cognitivo" type="text" placeholder="Estado cognitivo">
 													</div>
 												</div>
 											</div>
@@ -238,16 +175,16 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                        <button id="b_add_p" type="button" class="btn btn-primary" data-dismiss="modal">Guardar Cambios</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button id="b_add_p" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
                                     </div>
                                 </div>
                                 </div>
                             </div> 
                   
 
-                            <!-- Modal Edit Patient -->
-                            <div class="modal fade" id="modaleditpatient" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <!-- Modal Edit user -->
+                            <div class="modal fade" id="modaledituser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -257,314 +194,118 @@
                                     </button>
                                     </div>
                                     <div class="modal-body">
-                                    
                                         <form>
-                                            <!-- Input type text -->
+                                            <!-- Input type text NAME -->
                                             <div class="form-group">
-                                                <label for="FNPatient">Nombre</label>
-                                                <input type="text" class="form-control" name="FNPatient" id="editFNPatient" value ="" required>
+                                                <label for="FNuser">Name</label>
+                                                <input type="text" class="form-control" name="FNuser" id="editFNuser" placeholder="Name" required>
                                             </div>
                                             
-                                            <!-- Input type text -->
+                                            <!-- Input type text SURNAME 1-->
                                             <div class="form-group">
-                                                <label for="LNPatient">Primer Apellido</label>
-                                                <input type="text" class="form-control" name="LNPatient" id="editLNPatient" placeholder="Patient" required>
+                                                <label for="LNuser1">Surname 1</label>
+                                                <input type="text" class="form-control" name="LN1user" id="editLN1user" placeholder="Surname 1" required>
                                             </div>
-                                            <!-- Input type text AGE and WEIGHT-->
+                                            <!-- Input type text SURNAME 2-->
+                                            <div class="form-group">
+                                                <label for="LNuser2">Surname 2</label>
+                                                <input type="text" class="form-control" name="LN2user" id="editLN2user" placeholder="Surname 2" required>
+                                            </div>
+                                            <!-- Input type text AGE and GENDER-->
                                             <div class="form-row">
 												<div class="col">
 													<div class="form-group">
-														<label for="patient_age">Edad</label>
-														<input type="text" class="form-control" name="AgePatient" id="editAgePatient" placeholder="0" required>
+														<label for="date_of_birth">Date Of Birth</label>
+														<input type="date" id="editbirthday" name="birthday">
 													</div>
 												</div>
 												<div class="col">
 													<div class="form-group">
-														<label for="GENDERPatient">Sexo</label>
+														<label for="FNuser">Gender</label>
 														<br>&nbsp;
-														<select class="btn  btn-primary" id="editGender" class="form-control">
-															<option value="Hombre">Hombre</option>
-															<option value="Mujer">Mujer</option>
+														<select class="btn  btn-primary" id="editgender" class="form-control">
+															<option value="Hombre">Male</option>
+															<option value="Mujer">Female</option>
 														</select> 
 													</div>
 												</div>
 											</div>
-											<!-- Input type text WEIGHT and HEIGHT-->
-											<div class="form-row">
-												<div class="col">
-													<div class="form-group">
-														<label for="weight">Peso (Kg)</label>
-														<input type="text" class="form-control" name="WeightPatient" id="editWeightPatient" placeholder="0" required>
-													</div>
-												</div>
-												<div class="col">
-													<div class="form-group">
-														<label for="leg_length"> Altura (cm)</label>
-														<input type="text" class="form-control" name="HPatient" id="editHeightPatient" placeholder="0" required>
-													</div>
-												</div>
-											</div>
-											<!--Input type text ACTIVE ROM and LEG LENGTH--> 
-											<div class="form-row">
-												<div class="col">
-													<div class="form-group">
-														<label for="active_rom">ROM Activo (º)</label>
-														<input type="text" class="form-control" name="activeRom" id="editActiveRom" placeholder="0">
-													</div>
-												</div>
-												<div class="col">
-													<div class="form-group">
-														<label for="leg_length">Longitud de Pierna (cm)</label>
-														<input type="text" class="form-control" name="LLPatient" id="editLLPatient" placeholder="0" required>
-													</div>
-												</div>
-												
-											</div>
-                                            <!-- Input type text TYPE OF SURGERY-->
-											<div class="form-row">
-												<div class="col">
-													<div class="form-group">
-														<label for="observations">Tipo de cirujía</label>
-														<input class="form-control" id="editsurgery" type="text" placeholder="Tipo de cirujía">
-													</div>
-												</div>
-												<div class="col">
-													<div class="form-group">
-														<label for="weight">Cadera Dañada</label>
-														<select class="btn  btn-primary" id="edithip_joint" class="form-control">
-															<option value="Derecha">Derecha</option>
-															<option value="Izquierda">Izquierda</option>
-															<option selected value="No Aplica ">No aplica</option>
-														</select> 													
-													</div>
-												</div>
-											</div>
-                                            <!-- Input type text PHYSYCAL AND COGNITIVE STATUS-->
-											<div class="form-row">
-												<div class="col">
-													<div class="form-group">
-														<label for="estado_fisico">Estado Físico</label>
-														<input class="form-control" id="editestado_fisico" type="text" placeholder="Estado fisico">
-													</div>
-												</div>
-												<div class="col">
-													<div class="form-group">
-														<label for="estado_cognitivo">Estado Cognitivo</label>
-														<input class="form-control" id="editestado_cognitivo" type="text" placeholder="Estado cognitivo">
-													</div>
-												</div>
-											</div>
+											
                                         </form>
-
-
-
-
-
                                     </div>
                                     <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                    <button id="b_edit_p" type="button" class="btn btn-primary" data-dismiss="modal">Guardar Cambios</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button id="b_edit_p" type="button" class="btn btn-primary" data-dismiss="modal">Save Changes</button>
                                     </div>
                                 </div>
                                 </div>
                             </div> 
 
 
-                            <!-- Modal Deleted Patient -->
-                            <div class="modal fade" id="modaldeletedpatient" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <!-- Modal Deleted user -->
+                            <div class="modal fade" id="modaldeleteduser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Paciente</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                     </div>
                                     <div class="modal-body">
-										¿Estás seguro de que quieres eliminar este paciente?
+										Are you sure you want to delete the user?
                                     </div>
                                     <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                    <button id="b_delete_p" type="button" class="btn btn-primary" data-dismiss="modal">Si</button>
+                                    <button id="b_delete_p" type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
                                     </div>
                                 </div>
                                 </div>
                             </div> 
 
 
-                            <!-- Modal Download List Patients -->
-                            <div class="modal fade" id="modaldownloadlistpatients" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <!-- Modal Download List users -->
+                            <div class="modal fade" id="modaldownloadlistusers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Descargar Sesión</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Download Users List</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                     </div>
                                     <div class="modal-body">
-                                        ¿Quieres descargar los datos de esta sesión?
+                                        Are you sure you want to delete the users list?
                                     </div>
                                     <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                    <button id="b_download_p" type="button" class="btn btn-primary" data-dismiss="modal">Descargar</button>
-                                    </div>
-                                </div>
-                                </div>
-                            </div> 
-
-                            <!--/////////////////////////////////////////////////  THERAPIST ////////////////////////////////////////////////////////////////////////////////-->
-
-                            <!-- Modal Add Therapist -->
-                            <div class="modal fade" id="modaladdtherapist" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Añadir Terapeuta</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                    
-    
-                                        <form>
-                                            <!-- Input type text -->
-                                            <div class="form-group">
-                                                <label for="FNTherapist">Nombre</label>
-                                                <input type="text" class="form-control" name="FNTherapist" id="FNTherapist" placeholder="Therapist" required>
-                                            </div>
-                                            
-                                            <!-- Input type text -->
-                                            <div class="form-group">
-                                                <label for="LNTherapist">Primer Apellido</label>
-                                                <input type="text" class="form-control" name="LNTherapist" id="LNTherapist" placeholder="Therapist" required>
-                                            </div>
-
-                                            <!-- Input type text -->
-                                            <div class="form-group">
-                                                <label for="Center">Centro</label>
-                                                <input type="text" class="form-control" name="Center" id="Center" placeholder="Hospital" required>
-                                            </div>
-                                        </form>
-                                        
-
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                        <button id="b_add_t" type="button" class="btn btn-primary" data-dismiss="modal">Guardar Cambios</button>
-                                    </div>
-                                </div>
-                                </div>
-                            </div> 
-                    
-
-                            <!-- Modal Edit Therapist -->
-                            <div class="modal fade" id="modaledittherapist" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Editar Terapeuta</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    </div>
-                                    <div class="modal-body">
-                                    
-                                        <form>
-                                            <!-- Input type text -->
-                                            <div class="form-group">
-                                                <label for="FNTherapist">Nombre</label>
-                                                <input type="text" class="form-control" name="editFNTherapist" id="editFNTherapist" placeholder="Therapist" required>
-                                            </div>
-                                            
-                                            <!-- Input type text -->
-                                            <div class="form-group">
-                                                <label for="LNTherapist">Primer Apellido</label>
-                                                <input type="text" class="form-control" name="editLNTherapist" id="editLNTherapist" placeholder="Therapist" required>
-                                            </div>
-
-                                            <!-- Input type text -->
-                                            <div class="form-group">
-                                                <label for="Center">Centro</label>
-                                                <input type="text" class="form-control" name="editCenter" id="editCenter" placeholder="Hospital" required>
-                                            </div>
-                                        </form>
-
-
-                                    </div>
-                                    <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                    <button id="b_edit_t" type="button" class="btn btn-primary" data-dismiss="modal">Guardar Cambios</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button id="b_download_p" type="button" class="btn btn-primary" data-dismiss="modal">Download</button>
                                     </div>
                                 </div>
                                 </div>
                             </div> 
 
 
-                            <!-- Modal Deleted Therapist -->
-                            <div class="modal fade" id="modaldeletedtherapist" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Terapeuta</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        ¿Estás seguro de que quieres eliminar este terapeuta?
-                                    </div>
-                                    <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                    <button id="b_delete_t" type="button" class="btn btn-primary" data-dismiss="modal">Si</button>
-                                    </div>
-                                </div>
-                                </div>
-                            </div> 
-                        
-                        
-                            <!-- Modal Download List Therapist -->
-                            <div class="modal fade" id="modaldownloadlisttherapist" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Descargar Sesión</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            ¿Quiere descargar la lista de terapeutas?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                            <button id="b_download_t" type="button" class="btn btn-primary" data-dismiss="modal">Descargar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> 
-
-
-                            <!--/////////////////////////////////////////////////  SESSIONS  ////////////////////////////////////////////////////////////////////////////////-->
+                            <!--/////////////////////////////////////////////////  Sessions  ////////////////////////////////////////////////////////////////////////////////-->
                             
                             <!-- Modal Deleted Session -->
                             <div class="modal fade" id="modaldeletedsession" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel"> Eliinar Sesión</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel"> Delete </h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                     </div>
                                     <div class="modal-body">
-                                        ¿Estás seguro de que quieres eliminar esta sesión?
+                                        Do you want to delete this session or the whole study case?
                                     </div>
                                     <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                    <button id="b_delete_s" type="button" class="btn btn-primary" data-dismiss="modal">Si</button>
+                                    <button id="b_delete_s" type="button" class="btn btn-primary" data-dismiss="modal">Delete Session</button>
+                                    <button id="b_delete_studyCase" type="button" class="btn btn-primary" data-dismiss="modal">Delete Study Case</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
                                     </div>
                                 </div>
                                 </div>
@@ -575,17 +316,17 @@
                                 <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Descargar Configuraciones De Sesión</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Download All Sessions Configuration</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                     </div>
                                     <div class="modal-body">
-                                    ¿Quieres descargar los datos de configuración de todas las sesiones?
+                                    Do you want to download the configuration data of all session?
                                     </div>
                                     <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                    <button id="b_download_s_conf" type="button" class="btn btn-primary">Descargar</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button id="b_download_s_conf" type="button" class="btn btn-primary">Download</button>
                                     </div>
                                 </div>
                                 </div>
@@ -596,17 +337,19 @@
                                 <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Descargar Datos De Sesión</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Download</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                     </div>
                                     <div class="modal-body">
-                                    ¿Quieres descargar los datos de la sesión?
+                                    In which format do you want to download the data of the selected study case?
                                     </div>
                                     <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                    <button id="b_download_s_data" type="button" class="btn btn-primary">Descargar</button>
+                                    <button id="b_download_csv_studycase" type="button" class="btn btn-primary">.xlsx</button>
+                                    <button id="b_download_dashboard_data" type="button" class="btn btn-primary">Dashboard</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
                                     </div>
                                 </div>
                                 </div>
@@ -617,17 +360,17 @@
                                 <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Descargar Datos De Sesión</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Download Session's Database</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                     </div>
                                     <div class="modal-body">
-                                    ¿Quieres descargar los datos de todas las sesiones?
+                                    Do you want to download the data of all sessions?
                                     </div>
                                     <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                    <button id="b_download_all_s_data" type="button" class="btn btn-primary">Descargar</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button id="b_download_all_s_data" type="button" class="btn btn-primary">Download</button>
                                     </div>
                                 </div>
                                 </div>
@@ -635,12 +378,14 @@
 
                             <!-- TABS PARA LA NEVEGACION DE LAS DIFERENTES TABLAS-->
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#sessions" role="tab" aria-controls="home" aria-selected="true">Sesiones</a>
+                                
+                                <li class="nav-item active" role="presentation">
+                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#sessions" role="tab" aria-controls="home" aria-selected="false">Sessions</a>
                                 </li>
-                                <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#patients" role="tab" aria-controls="profile" aria-selected="false">Pacientes</a>
+                                <li class="nav-item " role="presentation">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#users" role="tab" aria-controls="profile" aria-selected="true">Users</a>
                                 </li>
+                                
                             </ul>
 
                             <div class="tab-content" id="myTabContent">
@@ -648,11 +393,11 @@
                                 <div class="tab-pane fade show active" id="sessions" role="tabpanel" aria-labelledby="home-tab">
                                     <br>
                                     <div id="toolbar">
-                                        <button id="remove_session" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modaldeletedsession"  disabled><i class="fas fa-user-times"></i> Eliminar Sesión</button>
-                                        <button id="download_sessions_config" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modaldownloadsessionscofiguration" disabled><i class="fas fa-download"></i>  Descargar Configuración De Sesiones</button> 
-                                        <button id="download_session_data" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modaldownloadsessiondata" disabled><i class="fas fa-download"></i>  Descargar Sesión</button> 
-                                        <button id="view_session" type="button" class="btn btn-outline-primary" disabled><i class="fas fa-search"></i> Visualizar Sesión</button> 
-                                        <button id="download_all_sessions_data" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modaldownloadallsessionsdata"><a href="summary.html"><i class="fas fa-download"></i>  Descargar Todas las Sesiones</a></button> 
+                                        <button id="remove_session" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modaldeletedsession"  disabled><i class="fas fa-user-times"></i> Delete</button>
+                                        <button id="download_sessions_config" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modaldownloadsessionscofiguration" style="display:none" disabled><i class="fas fa-download" ></i>  Download All Session's Configuration</button> 
+                                        <button id="download_session_data" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modaldownloadsessiondata" style="display:none" disabled><i class="fas fa-download"></i>  Download </button> 
+                                        <button id="view_study_case" type="button" class="btn btn-outline-primary" disabled><i class="fas fa-search"></i> View Study Case</button> 
+                                        <button id="download_all_sessions_data" type="button" class="btn btn-outline-primary" data-toggle="modal" style="display:none" data-target="#modaldownloadallsessionsdata"><a href="summary.html"><i class="fas fa-download"></i>  Download All Session's Data</a></button> 
                                     </div>
                                     <br> 
 
@@ -670,15 +415,14 @@
                                                     <th>
                                                         <input type="checkbox" />
                                                     </th>
-                                                    <th scope="col">ID</th>
-                                                    <th scope="col">Fecha De Sesión</th> 
-                                                    <th scope="col">Nombre Del Paciente</th>
-                                                    <th scope="col">Apellido Del Paciente</th>
-                                                    <th scope="col">Sesión</th>
-                                                    <th scope="col">Velocidad SWalkerII</th>
-                                                    <th scope="col">Observaciones</th>
-
-                                                    
+                                                    <th scope="col">Session ID</th>
+                                                    <th scope="col">Date</th> 
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Lastname 1</th>
+                                                    <th scope="col">Lastname 2</th>
+                                                    <th scope="col">Joint</th>
+                                                    <th scope="col">Case Study</th>
+                                                    <th scope="col">Comments</th>
                                                 </tr>
                                             </thead>
                                         </table>
@@ -686,13 +430,13 @@
                                 </div>
 
 
-                                <div class="tab-pane fade" id="patients" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="tab-pane fade " id="users" role="tabpanel" aria-labelledby="profile-tab">
                                     <br>
                                     <div id="toolbar">
-                                        <button id="add_patient" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modaladdpatient"><i class="fas fa-user-plus"></i>  Añadir Paciente</button>
-                                        <button id="edit_patient" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modaleditpatient" disabled ><i class="fas fa-edit"></i>  Editar Paciente</button>
-                                        <button id="remove_patient" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modaldeletedpatient"  disabled><i class="fas fa-user-times"></i>  Eliminar Paciente</button>
-                                        <button id="download_list_patient" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modaldownloadlistpatients" ><i class="fas fa-download"></i>  Descargar Lista De Pacientes</button>
+                                        <button id="add_user" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modaladduser"><i class="fas fa-user-plus"></i> Add User </button>
+                                        <button id="edit_user" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modaledituser" disabled ><i class="fas fa-edit"></i>  Edit User</button>
+                                        <button id="remove_user" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modaldeleteduser"  disabled><i class="fas fa-user-times"></i>  Delete User</button>
+                                        <button id="download_list_user" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modaldownloadlistusers" ><i class="fas fa-download"></i>  Download List Of Users</button>
                                         
                                     </div>
                                     <br> 
@@ -704,24 +448,18 @@
                                             font-size: 13px;
                                             }
                                         </style>
-                                        <table id="patientsList" class="table table-bordered table-hover table-striped">
+                                        <table id="usersList" class="table table-bordered table-hover table-striped">
                                             <thead class="thead-light">
                                                 <tr>
                                                     <th>
                                                         <input type="checkbox" />
                                                     </th>
-                                                    <th scope="col">Nombre</th>
-                                                    <th scope="col">Apellido</th>
-                                                    <th scope="col">Edad</th>
-                                                    <th scope="col">Sexo</th>
-                                                    <th scope="col">Peso</th>
-                                                    <th scope="col">Altura</th>
-                                                    <th scope="col">Longitud de Pierna</th>
-                                                    <th scope="col">ROM Activo Maximo</th>
-                                                    <th scope="col">Cadera Afectada</th>
-                                                    <th scope="col">Tipo de Cirujía</th>
-                                                    <th scope="col">Estado Cognitivo</th>
-                                                    <th scope="col">Estado Físico</th>
+                                                    <th scope="col">User ID</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Username 1</th>
+                                                    <th scope="col">Username 2</th>
+                                                    <th scope="col">Gender</th>
+                                                    <th scope="col">Date Of Birth</th>
                                                 </tr>
                                             </thead>
                                         </table>

@@ -1,6 +1,9 @@
 //var socket = io.connect('http://localhost:3000',{'forceNew':true});
 const socket = io();
 
+global_user_data = {}
+global_config_data = {}
+
 socket.on('session_data_loaded',function(data){
 
     console.log(data);
@@ -13,188 +16,161 @@ socket.on('session_data_loaded',function(data){
 
 socket.emit('refreshlist');
 
-var n_session;
-socket.on('datasessions', function(datasessions) {
-	
-	console.log(datasessions);
-	var l_rom;
-	var r_rom ;
-	var load;
-	
-	$('#view_session').on('click', function() {
-	l_rom = [];
-	r_rom = [];
-	load = [];
-	
-	for (i = 0; i < datasessions.length; i++) {
-		if (datasessions[i].idSesion == n_session){
-		   l_rom.push(datasessions[i].left_hip);
-		   r_rom.push(datasessions[i].right_hip);
-		   load.push(datasessions[i].weight_gauge);
-		   
-		};
-	};
-			
-	var l_max = Math.max(...l_rom);
-    var r_max = Math.max(...r_rom);
-    console.log(r_max);
-    var r_min = Math.min(...r_rom);
-    var l_min = Math.min(...l_rom);
-    
-    
-	// load
-	let mean_load = 0;
-	for (i=0; i<load.length;i++){
-		mean_load = mean_load + load[i];
-	}
-	mean_load = Math.round(mean_load/load.length);
-	
-	if (r_rom.length != 0){
-		document.getElementById("l_maxRom").innerHTML =  l_max + "º";
-		document.getElementById("l_minRom").innerHTML =  l_min + "º";
-		document.getElementById("r_maxRom").innerHTML =  r_max + "º";
-		document.getElementById("r_minRom").innerHTML =  r_min + "º";
-		document.getElementById("supported_weight").innerHTML =  mean_load + "%";
+socket.on('usersdata',function(datauser){
 
-	} else {
-		document.getElementById("l_maxRom").innerHTML =  "--";
-		document.getElementById("l_minRom").innerHTML =  "--";
-		document.getElementById("r_maxRom").innerHTML =  "--";
-		document.getElementById("r_minRom").innerHTML =  "--";
-		document.getElementById("supported_weight").innerHTML =  "--";
-	}
-
-    
-	$("#modalviewsession").modal('show');
-
-    
-  }) 
+  console.log(datauser);
   
-  $('#modalviewsession').on('shown.bs.modal', function (event) {
+  global_user_data = datauser
 
-	var ctxl = document.getElementById('l_hip_chart').getContext('2d');
-	var ctxr = document.getElementById('r_hip_chart').getContext('2d');
-	
-	
-    
-    var commonJointsOptions = {
-      font: {
-        size: 16
-      },
-      scales: {
-        xAxes: [{
-			type: 'time',
-			time: {
-				parser: 'mm-ss-SS',
-				tooltipFormat: 'HH:mm',
-				displayFormats: {
-					millisecond: 'mm:ss.SSS',
-					second: 'mm:ss',
-					minute: 'mm'
-				}
-          },
-		 
-		  
-		  
-          scaleLabel: {
-            fontSize: 18,
-            display: true,
-            labelString: 'Segundos (s)'
-          },
-          ticks: {
-            fontSize: 18,
-            autoSkip: true,
-            sampleSize: 5,
-            maxRotation: 0,
-            minRotation: 0
 
+  let $pd = $('#usersList');
+  console.log(datauser)
+  let pd = $pd.DataTable({
+      "data": datauser,
+      "columns": [
+          {"width": '4%',
+          render: function(data, type, fullistapacientes, meta) {
+            // ACA controlamos la propiedad para des/marcar el input
+            return "<input type='checkbox'" + (fullistapacientes.checked ? ' checked' : '') + "/>";
+          },
+          orderable: false
+           },
+          { data: 'id'},
+          { data: 'nombre_usuario' },
+          { data: 'apellido_usuario_1'},
+          { data: 'apellido_usuario_2'},
+          { data: 'sexo'},
+          { data: 'fecha_nacimiento'},
+          ],
+          
+  });
+
+
+        // Cuando hacen click en los checkbox del tbody
+        $pd.on('change', 'tbody input', function() {
+          let info = pd.row($(this).closest('tr')).data();
+          // ACA accedemos a las propiedades del objeto
+          info.checked = this.checked;
+          if (this.checked){
+              document.getElementById("edit_user").disabled = false;
+              document.getElementById("remove_user").disabled = false;
+              document.getElementById("download_list_user").disabled = false;
+          }else{
+              document.getElementById("edit_user").disabled = true;
+              document.getElementById("remove_user").disabled = true;
+              document.getElementById("download_list_user").disabled = true;
           }
-        }],
-        yAxes: [{
-          ticks: {
-            max: 50,    // maximum will be 70, unless there is a lower value.
-            min: -30,    // minimum will be -10, unless there is a lower value.
-          },
-          scaleLabel: {
-            display: true,
-            labelString: 'Grados (º)'
-          }
-        }]
-      },
-      maintainAspectRatio: false,
-      //showLines: false, // disable for a single dataset
-      animation: {
-        duration: 0 // general animation time
-      },
-      elements: {
-        line: {
-          tension: 0.1 // disables bezier curves
-        }
-      }
-    };
-  
-    // Joint instances
-    var ctxrhipInstance = new Chart(ctxr, {
-      type: 'line',
-      data: {
-        datasets: [{label: 'ROM',
-          data: [],
-          fill: false,
-          borderColor: '#FF2626',
-          borderWidth: 1.5,
-          pointStyle: 'line'
-        }],
-      },
-      options: Object.assign({}, commonJointsOptions), 
-    });
-    
-    console.log(ctxrhipInstance);
-    
-    var ctxlhipInstance = new Chart(ctxl, {
-      type: 'line',
-      data: {
-        datasets: [{
-          label: 'ROM',
-          data: [],
-          fill: false,
-          borderColor: '#FF2626',
-          borderWidth: 1.5,
-          pointStyle: 'line'
-        }],
-      },
-      options: Object.assign({}, commonJointsOptions),   
-    });
-    
-    var time_labels = [];
-    console.log(r_rom)
-    for (i=0; i< r_rom.length ; i++){
-		// update labels
-		var segundos = Math.trunc(i/100);
-		var milisegundos = Math.trunc((i/100 - segundos)*1000)
-		var minutos = Math.trunc(segundos/60);
-		segundos = segundos - minutos*60; 
-		var label = minutos + '-' + segundos + '-' + milisegundos;
-		if(milisegundos.toString().length == 2){
-			var label = minutos + '-' + segundos + '-0' + milisegundos;
-		}
-		ctxrhipInstance.data.labels.push(label)
-		ctxrhipInstance.data.datasets[0].data.push(r_rom[i])
-		ctxlhipInstance.data.labels.push(label)
-		ctxlhipInstance.data.datasets[0].data.push(l_rom[i])
-	}
-	ctxrhipInstance.update();
-	ctxlhipInstance.update();
-	
-	
-}); 
-	
+         
+      });
 
-});
-	
-socket.on('datostabla', function(datas) {
+
+    //ADD PATIENT
+    $('#b_add_p').on('click', function() {
+      let userfname = document.getElementById("FNuser").value;
+      let userln1 = document.getElementById("LN1user").value;
+      let userln2= document.getElementById("LN2user").value;
+      let usergender = document.getElementById("gender").value;
+      let userbirthday = document.getElementById("birthday").value;
+      socket.emit('insertuser',[userfname, userln1, userln2, userbirthday, usergender]);
+      
+      socket.on('useradded',function(id_user){
+        $('#usersList').DataTable().row.add({
+            'id': id_user.id,
+            'nombre_usuario': userfname,
+            'apellido_usuario_1': userln1,
+            'apellido_usuario_2': userln2,
+            'sexo': usergender,
+            'fecha_nacimiento': userbirthday,
+        }).draw();
+        
+      });
+      
+    })
+
+    //  suscribimos un listener al click del boton remove
+    $('#b_delete_p').on('click', function() {
+        let dt = $('#usersList').DataTable();
+        let vars = dt.data().toArray();
+        let checkeds = dt.data().toArray().filter((data) => data.checked);
+        for (i = 0; i < vars.length; i++) {
+          console.log(checkeds[0].id)
+          console.log(vars[i].id)
+            if (checkeds[0].id == vars[i].id){
+              var indexrow = i
+            };
+        };
+        dt.row(indexrow).remove().draw();
+        socket.emit('deleted_user',checkeds[0].id);
+    });
+
+    $('#b_download_p').on('click', function() {
+      socket.emit('download_users');
+      window.open('http://192.168.43.1:3000/downloadusers');
+    });
+
+
+    $('#edit_user').on('click', function() {
+      let dt = $('#usersList').DataTable();
+      let vars = dt.data().toArray();
+      let checkeds = dt.data().toArray().filter((data) => data.checked);
+      console.log(checkeds)
+      for (i = 0; i < vars.length; i++) {
+          if (checkeds[0].idtabla_pacientes == vars[i].id){
+            console.log(i);
+            var indexrow = i;
+            console.log(checkeds[0].id);
+          };
+      };
+      document.getElementById("editFNuser").value = checkeds[0].nombre_usuario;
+      document.getElementById("editLN1user").value =  checkeds[0].apellido_usuario_1;
+      document.getElementById("editLN2user").value =  checkeds[0].apellido_usuario_2;
+      document.getElementById("editgender").value =  checkeds[0].sexo;
+      document.getElementById("editbirthday").value =  checkeds[0].fecha_nacimiento;
+ 
+    })
+
+    $('#b_edit_p').on('click', function() {
+      let dt = $('#usersList').DataTable();
+      let vars = dt.data().toArray();
+      let checkeds = dt.data().toArray().filter((data) => data.checked);
+
+      for (i = 0; i < vars.length; i++) {
+          if (checkeds[0].id == vars[i].id){
+            console.log(i);
+            var indexrow = i;
+            console.log(checkeds[0].id);
+          };
+      };
+      
+      checkeds[0].nombre_usuario = document.getElementById("editFNuser").value;
+      checkeds[0].apellido_usuario_1 = document.getElementById("editLN1user").value;
+      checkeds[0].apellido_usuario_2 = document.getElementById("editLN2user").value;
+      checkeds[0].sexo = document.getElementById("editgender").value;
+      checkeds[0].fecha_nacimiento = document.getElementById("editbirthday").value;
+      
+      
+
+      dt.row(indexrow).remove().draw();
+      $('#usersList').DataTable().row.add({
+        'id': checkeds[0].id,
+        'nombre_usuario': checkeds[0].nombre_usuario,
+        'apellido_usuario_1': checkeds[0].apellido_usuario_1,
+        'apellido_usuario_2': checkeds[0].apellido_usuario_2,
+        'sexo': checkeds[0].sexo,
+        'fecha_nacimiento': checkeds[0].fecha_nacimiento,
+        
+      }).draw();
+      
+      socket.emit('edit_user',checkeds[0]);
+    });
+
+
+})
+
+socket.on('sessionsconfigdata', function(datas) {
 
     console.log(datas);
-    
+    global_config_data = datas;
 
     //Creación de DataTables
     let $dt = $('#sessionsList');
@@ -215,13 +191,14 @@ socket.on('datostabla', function(datas) {
             },
             orderable: false
              },
-             {data: 'idtable_session'},
+             {data: 'id'},
             { data: 'date' },
-            { data: 'NombrePaciente' },
-            { data: 'ApellidoPaciente'},
-            { data: 'NumberSession'},
-            { data: 'gait_velocity'},
-            { data: 'observations'}
+            { data: 'nombre_usuario' },
+            { data: 'apellido_usuario_1'},
+            { data: 'apellido_usuario_2'},
+            { data: 'articulacion'},
+            { data: 'caso_estudio'},
+            { data: 'comentarios'}
             ],
             
     });
@@ -255,29 +232,19 @@ socket.on('datostabla', function(datas) {
             document.getElementById("remove_session").disabled = false;
             document.getElementById("download_sessions_config").disabled = false; 
             document.getElementById("download_session_data").disabled = false; 
-            document.getElementById("view_session").disabled = false;
-            
-            
-            var r_max = 0;
-            var l_max = 0;
-            var l_min = 0;
-            var r_min = 0;
-            var mean_load = 0;
+            document.getElementById("view_study_case").disabled = false;
             
             let dt = $('#sessionsList').DataTable();
-			let vars = dt.data().toArray();
-			let checkeds = dt.data().toArray().filter((data) => data.checked);
-			console.log(checkeds[0].idtable_session);
-			n_session = checkeds[0].idtable_session;
-			
-            
-            
+            let vars = dt.data().toArray();
+            let checkeds = dt.data().toArray().filter((data) => data.checked);
+            console.log(checkeds[0]);
+            n_session = checkeds[0].id;
 
         }else{
             document.getElementById("remove_session").disabled = true;
             document.getElementById("download_sessions_config").disabled = true; 
             document.getElementById("download_session_data").disabled = true; 
-            document.getElementById("view_session").disabled = true;
+            document.getElementById("view_study_case").disabled = true;
             
             
         }       
@@ -308,32 +275,99 @@ socket.on('datostabla', function(datas) {
     let vars = dt.data().toArray();
     let checkeds = dt.data().toArray().filter((data) => data.checked);
     for (i = 0; i < vars.length; i++) {
-        if (checkeds[0].idtable_session == vars[i].idtable_session){
+        if (checkeds[0].id == vars[i].id){
           console.log(i);
           var indexrow = i;
         };
     };
     console.log()
     dt.row(indexrow).remove().draw();
-    socket.emit('deleted_session',checkeds[0].idtable_session);
+    socket.emit('deleted_session',checkeds[0].id);
+  });
+  
+  $('#b_delete_studyCase').on('click', function() {
+    let dt = $('#sessionsList').DataTable();
+    let vars = dt.data().toArray();
+    let checkeds = dt.data().toArray().filter((data) => data.checked);
+    let study_case_to_delete = checkeds[0].caso_estudio
+    let indexrows = []
+    for (i = 0; i < vars.length; i++) {
+        if (study_case_to_delete == vars[i].caso_estudio){
+          var indexrow = i;
+          indexrows.push(indexrow)
+        };
+    };
+    console.log(indexrows)
+    for (i=0; i<indexrows.length; i++){
+      dt.row(indexrows[0]).remove().draw();
+    }
+    socket.emit('deleted_study_case', study_case_to_delete);
   });
 
-  // DOWNLOAD DATA SESSION
-  $('#b_download_s_data').on('click', function() {
+  // DOWNLOAD DATA SESSION IN CSV FORMAT
+  $('#b_download_csv_studycase').on('click', function() {
     console.log("Download Data")
     let dt = $('#sessionsList').DataTable();
     let vars = dt.data().toArray();
     let checkeds = dt.data().toArray().filter((data) => data.checked);
 
     for (i = 0; i < vars.length; i++) {
-        if (checkeds[0].idtable_session == vars[i].idtable_session){
+        if (checkeds[0].id == vars[i].id){
           console.log(i);
-          console.log(checkeds[0].idtable_session);
-          socket.emit('download_sessions_data', (checkeds[0].idtable_session));
+          console.log(checkeds[0].id);
+          console.log(checkeds[0].caso_estudio);
+          
+          let title_text = []
+          
+          if(checkeds[0].articulación == "cervical"){
+            title_texts = ["Extension/Flexion", "Right/Left Inclination", "Right/Left Rotation"]
+          } else if(checkeds[0].articulación == "hombro_derecho"){
+            title_texts = ["Extension/Flexion", "Adduction/Abduction", "External/Internal Rotation"]
+          } else if(checkeds[0].articulación == "hombro_izquierdo"){
+            title_texts = ["Extension/Flexion", "Abduction/Adduction", "Internal/External Rotation"]
+          } else if(checkeds[0].articulación == "codo_derecho"){
+            title_texts = ["Extension/Flexion", "Supination/Pronation", "Rotation"]
+          } else if(checkeds[0].articulación == "codo_izquierdo"){
+            title_texts = ["Extension/Flexion", "Pronation/Supination", "Rotation"]
+          } else if(checkeds[0].articulación == "muñeca_derecha"){
+            title_texts = ["Extension/Flexion", "Desv. Radial/Cubital", "Rotation"]
+          } else if(checkeds[0].articulación == "muñeca_izquierda"){
+            title_texts = ["Extension/Flexion", "Desv. Cubital/Radial", "Rotation"]
+          } else if(checkeds[0].articulación == "lumbar"){
+            title_texts = ["Extension/Flexion", "Right/Left Inclination", "Right/Left Rotation"]
+          } else if(checkeds[0].articulación == "cadera_izquierda"){
+            title_texts = ["Extension/Flexion", "Adduction/Abduction", "External/Internal Rotation"]
+          } else if(checkeds[0].articulación == "cadera_derecha"){
+            title_texts = ["Extension/Flexion", "Abduction/Adduction", "Internal/External Rotation"]
+          } else if(checkeds[0].articulación == "rodilla_derecha"){
+            title_texts = ["Flexion/Extension", "Inclination", "Rotation"]
+          } else if(checkeds[0].articulación == "rodilla_izquierda"){
+            title_texts = ["Flexion/Extension", "Inclination", "Rotation"]
+          } else if(checkeds[0].articulación == "tobillo_derecho"){
+            title_texts = ["Plantar/Dorsal Flexion", "Left/Right Inclination", "Rotation"]
+          } else if(checkeds[0].articulación == "tobillo_izquierdo"){
+            title_texts = ["Plantar/Dorsal Flexion", "Right/Left nclination", "Rotation"]
+          }  
+          socket.emit('download_studycase_csv', {
+            studyCase: (checkeds[0].caso_estudio),
+            titles: title_texts
+          });
         };
     };
     
   })
+  
+  $('#view_study_case').on('click', function() {
+    console.log("view clicked")
+    let dt = $('#sessionsList').DataTable();
+    let vars = dt.data().toArray();
+    let checkeds = dt.data().toArray().filter((data) => data.checked);
+    console.log(checkeds[0])
+    socket.emit("study_case_to_dashboard", checkeds[0])
+    location.replace("summary.html");
+    
+  });
+	
   
   // DOWNLOAD DATA SESSION
   $('#b_download_all_s_data').on('click', function() {
@@ -343,8 +377,8 @@ socket.on('datostabla', function(datas) {
     
   })
 
-  socket.on('open_download_sessions_link',function(idsesion){
-    window.open('http://192.168.43.1:3000/downloadsessionsdata');
+  socket.on('open_download_csv_studycase_link',function(idsesion){
+    window.open('http://192.168.43.1:3000/downloadsessionsdata_studycase_csv');
   });
   socket.on('open_download_all_sessions_link',function(idsesion){
     window.open('http://192.168.43.1:3000/downloadallsessionsdata');
@@ -358,195 +392,7 @@ socket.on('datostabla', function(datas) {
 })
 
 
-socket.on('patientdata',function(datapatient){
 
-  //for (var i = 0; i < datapatient.length; i++) {
-  //    listapacientes.push(datapatient[i]);
- // }
-  //console.log(listapacientes);
-  console.log(datapatient);
-
-
-  let $pd = $('#patientsList');
-  let pd = $pd.DataTable({
-      "data": datapatient,
-      "columns": [
-          {"width": '4%',
-          render: function(data, type, fullistapacientes, meta) {
-            // ACA controlamos la propiedad para des/marcar el input
-            return "<input type='checkbox'" + (fullistapacientes.checked ? ' checked' : '') + "/>";
-          },
-          orderable: false
-           },
-          { data: 'NombrePaciente' },
-          { data: 'ApellidoPaciente'},
-          { data: 'patiente_age'},
-          { data: 'patient_gender'},
-          { data: 'patiente_weight'},
-          { data: 'patient_height'},
-          { data: 'leg_length'},
-          { data: 'patient_active_rom'},
-          { data: 'hip_joint'},
-          { data: 'surgery'},
-          { data: 'estado_fisico'},
-          { data: 'estado_cognitivo'},
-          
-          ],
-          
-  });
-
-
-        // Cuando hacen click en los checkbox del tbody
-        $pd.on('change', 'tbody input', function() {
-          let info = pd.row($(this).closest('tr')).data();
-          // ACA accedemos a las propiedades del objeto
-          info.checked = this.checked;
-          if (this.checked){
-              document.getElementById("edit_patient").disabled = false;
-              document.getElementById("remove_patient").disabled = false;
-              document.getElementById("download_list_patient").disabled = false;
-          }else{
-              document.getElementById("edit_patient").disabled = true;
-              document.getElementById("remove_patient").disabled = true;
-              document.getElementById("download_list_patient").disabled = true;
-          }
-         
-      });
-
-
-    //ADD PATIENT
-    $('#b_add_p').on('click', function() {
-      let patfname = document.getElementById("FNPatient").value;
-      let patlname = document.getElementById("LNPatient").value;
-      let patage= document.getElementById("AgePatient").value;
-      let patweight = document.getElementById("WeightPatient").value;
-      let patleglength = document.getElementById("LLPatient").value;
-      let pathipjoint = document.getElementById("hip_joint").value;
-      let patsurgery = document.getElementById("surgery").value;
-      let patestadofisico = document.getElementById("estado_fisico").value;
-      let patestadocognitivo = document.getElementById("estado_cognitivo").value;
-      let patheight = document.getElementById("HeightPatient").value;
-      let patmaxActiveRom = document.getElementById("activeRom").value;
-      let patgender = document.getElementById("gender").value;
-      socket.emit('insertPatient',[patfname, patlname, patage, patweight, patleglength, patestadofisico, patestadocognitivo, patsurgery, pathipjoint, patheight, patmaxActiveRom, patgender]);
-      //location.reload(true);
-      console.log("hola");
-      
-      
-      $('#patientsList').DataTable().row.add({
-          'NombrePaciente': patfname,
-          'ApellidoPaciente': patlname,
-          'patiente_age': patage,
-          'patient_gender': patgender,
-          'patiente_weight': patweight,
-          'patient_height': patheight,
-          'leg_length': patleglength,
-          'patient_active_rom': patmaxActiveRom,
-          'estado_fisico': patestadofisico,
-          'estado_cognitivo': patestadocognitivo,
-          'surgery': patsurgery,
-          'hip_joint': pathipjoint,
-          
-      }).draw();
-    });
-
-        //  suscribimos un listener al click del boton remove
-    $('#b_delete_p').on('click', function() {
-        let dt = $('#patientsList').DataTable();
-        let vars = dt.data().toArray();
-        let checkeds = dt.data().toArray().filter((data) => data.checked);
-
-        for (i = 0; i < vars.length; i++) {
-            if (checkeds[0].idtabla_pacientes == vars[i].idtabla_pacientes){
-              console.log(i);
-              var indexrow = i;
-            };
-        };
-        dt.row(indexrow).remove().draw();
-        socket.emit('deleted_patient',checkeds[0].idtabla_pacientes);
-    });
-
-    $('#b_download_p').on('click', function() {
-      socket.emit('download_patients');
-      window.open('http://192.168.43.1:3000/downloadpatients');
-    });
-
-
-    $('#edit_patient').on('click', function() {
-      let dt = $('#patientsList').DataTable();
-      let vars = dt.data().toArray();
-      let checkeds = dt.data().toArray().filter((data) => data.checked);
-
-      for (i = 0; i < vars.length; i++) {
-          if (checkeds[0].idtabla_pacientes == vars[i].idtabla_pacientes){
-            console.log(i);
-            var indexrow = i;
-            console.log(checkeds[0].idtabla_pacientes);
-          };
-      };
-      document.getElementById("editFNPatient").value = checkeds[0].NombrePaciente ;
-      document.getElementById("editLNPatient").value =  checkeds[0].ApellidoPaciente;
-      document.getElementById("editAgePatient").value =  checkeds[0].patiente_age;
-      document.getElementById("editWeightPatient").value =  checkeds[0].patiente_weight;
-      document.getElementById("editLLPatient").value =  checkeds[0].leg_length;
-      document.getElementById("edithip_joint").value =  checkeds[0].hip_joint;
-      document.getElementById("editsurgery").value =  checkeds[0].surgery;
-      document.getElementById("editestado_fisico").value =  checkeds[0].estado_fisico;
-      document.getElementById("editestado_cognitivo").value =  checkeds[0].estado_cognitivo;
-      document.getElementById("editHeightPatient").value =  checkeds[0].patient_height;
-      document.getElementById("editActiveRom").value =  checkeds[0].patient_active_rom;
-      document.getElementById("editGender").value =  checkeds[0].patient_gender;
- 
-    })
-
-    $('#b_edit_p').on('click', function() {
-      let dt = $('#patientsList').DataTable();
-      let vars = dt.data().toArray();
-      let checkeds = dt.data().toArray().filter((data) => data.checked);
-
-      for (i = 0; i < vars.length; i++) {
-          if (checkeds[0].idtabla_pacientes == vars[i].idtabla_pacientes){
-            console.log(i);
-            var indexrow = i;
-            console.log(checkeds[0].idtabla_pacientes);
-          };
-      };
-      
-      checkeds[0].NombrePaciente = document.getElementById("editFNPatient").value;
-      checkeds[0].ApellidoPaciente = document.getElementById("editLNPatient").value;
-      checkeds[0].patiente_age = document.getElementById("editAgePatient").value;
-      checkeds[0].patiente_weight = document.getElementById("editWeightPatient").value;
-      checkeds[0].leg_length = document.getElementById("editLLPatient").value;
-      checkeds[0].hip_joint = document.getElementById("edithip_joint").value;
-      checkeds[0].surgery = document.getElementById("editsurgery").value;
-      checkeds[0].estado_fisico = document.getElementById("editestado_fisico").value;
-      checkeds[0].estado_cognitivo = document.getElementById("editestado_cognitivo").value;
-      checkeds[0].patient_height = document.getElementById("editHeightPatient").value;
-      checkeds[0].patient_gender = document.getElementById("editGender").value;
-      checkeds[0].max_active_rom = document.getElementById("editActiveRom").value;
-      
-
-      dt.row(indexrow).remove().draw();
-      $('#patientsList').DataTable().row.add({
-        'NombrePaciente': checkeds[0].NombrePaciente,
-        'ApellidoPaciente': checkeds[0].ApellidoPaciente,
-        'patiente_age': checkeds[0].patiente_age,
-        'patient_gender': checkeds[0].patient_gender,
-	    'patiente_weight': checkeds[0].patiente_weight,
-	    'patient_height': checkeds[0].patient_height,
-	    'leg_length': checkeds[0].leg_length,
-	    'patient_active_rom': checkeds[0].patient_active_rom,
-        'estado_fisico': checkeds[0].estado_fisico,
-        'estado_cognitivo': checkeds[0].estado_cognitivo,
-        'surgery': checkeds[0].surgery,
-        'hip_joint': checkeds[0].hip_joint,
-      }).draw();
-      
-      socket.emit('edit_patient',checkeds[0]);
-    });
-
-
-})
 
 
 

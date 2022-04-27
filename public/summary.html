@@ -35,7 +35,7 @@
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
                 <nav class="navbar navbar-light navbar-expand shadow mb-4 topbar static-top" style="background-color: #4e73df;">
-					<button class="btn-noStyle"><a href="users.html"><span style="color: white"><i class="fas fa-arrow-left fa-3x"></i></span></a></button>
+					<button class="btn-noStyle"><a href="index.html"><span style="color: white"><i class="fas fa-arrow-left fa-3x"></i></span></a></button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<span style="color: white"><b>BACK</b> </span>
                     <div class="container-fluid">
@@ -53,63 +53,531 @@
                 <p></p>
                 </div>
                 <center>
-					<div class="col-lg-10 mx-auto" style="width:40%">
-						<div class="card mb-3">
-							<div class="card-header d-flex justify-content-between align-items-center">
-								<h5 class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> DATOS DEL USUARIO  </h5>
-							</div>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div id="content_png">
+                        <div class="d-flex">
+                            <div class="col-lg-6 mx-auto">
+                                <div class="card mb-3">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h5 class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> USER DATA  </h5>
+                                    </div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-							<div class="mb-3 d-flex centered">
-								<h4>Usuario: &nbsp;</h4>
-								<h4> </h4>
-								<h4 id="patient-name" style="color: #4e73df">Nombre del Paciente</h4>
-							</div>
-							<div class="mb-3 d-flex centered">
-								<h4>Fecha: &nbsp;</h4>
-								<h4> </h4>
-								<h4 id="patient-name" style="color: #4e73df">03/04/2022</h4>
-							</div>
-							<div class="mb-3 d-flex centered">
-								<h4>Estudio: &nbsp;</h4>
-								<h4> </h4>
-								<h4 id="patient-name" style="color: #4e73df">Cervical</h4>
-							</div>
-						</div>
-					</div>
-					   
-					<br>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<!-- TABS PARA LA NEVEGACION DE LAS DIFERENTES TABLAS-->
-					<ul class="nav nav-tabs" id="myTab_graphs" role="tablist">
-						<li class="nav-item" role="presentation">
-							<a class="nav-link active" id="flexext_tab" data-toggle="tab" href="#flexext" role="tab" aria-controls="flexext" aria-selected="true">  FLEXOEXTENSION </a>
-						</li>
-						<li class="nav-item" role="presentation">
-							<a class="nav-link " id="rotacion_tab" data-toggle="tab" href="#rotacion" role="tab" aria-controls="rotacion" aria-selected="false">  ROTACIÓN </a>
-						</li>
-						<li class="nav-item" role="presentation">
-							<a class="nav-link " id="inclinacion_tab" data-toggle="tab" href="#inclinacion" role="tab" aria-controls="inclinacion" aria-selected="false"> INCLINACIÓN </a>
-						</li>
-					</ul>
-					<!-- TABS CONTENT-->
-					<div class="tab-content">
-						<!-- FLEXOEXTENSION -->
-                        <div class="tab-pane fade show active" id="flexext" role="tabpanel">
-							<div id="flexext_card" class="card shadow mb-4">
-								
-							</div>
-						</div>
-						<!-- ROTACION -->
-                        <div class="tab-pane fade" id="rotacion" role="tabpanel">
-							<div id="rotacion_card" class="card shadow mb-4" >
-							</div>
-						</div>
-						<!-- INCLINACION -->
-                        <div class="tab-pane fade" id="inclinacion" role="tabpanel">
-							<div id="inclinacion_card" class="card shadow mb-4" >
-							</div>
-						</div>						
+                                    <div class="mb-3 d-flex centered">
+                                        <h5>User: &nbsp;</h5>
+                                        <h5> </h5>
+                                        <h5 id="user-name" style="color: #4e73df">  </h5>
+                                    </div>
+                                    <div class="mb-3 d-flex centered">
+                                        <h5>Date of birth: &nbsp;</h5>
+                                        <h5> </h5>
+                                        <h5 id="birth_date" style="color: #4e73df"></h5>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="col-lg-6 mx-auto" >
+                                <div class="card mb-3">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h5 class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> STUDY CASE  </h5>
+                                    </div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <div class="mb-3 d-flex centered">
+                                        <h5>Study case: &nbsp;</h5>
+                                        <h5> </h5>
+                                        <h5 id="study_case" style="color: #4e73df"></h5>
+                                    </div>
+                                    <div class="mb-3 d-flex centered">
+                                        <h5>Joint: &nbsp;</h5>
+                                        <h5> </h5>
+                                        <h5 id="joint" style="color: #4e73df"></h5>
+                                    </div>
+                                    <div class="mb-1 d-flex centered">
+                                        <h5 id="s1_data"  style="display:none">Session 1: &nbsp;</h5>
+                                        <h5 id="s1" style="color: #4e73df"></h5>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <h5 id="s2_data" style="display:none" >Session 2: &nbsp;</h5>
+                                        <h5 id="s2" style="color: #4e73df"></h5>
+                                    </div>
+                                    <div class="mb-1 d-flex centered">
+                                        <h5 id ="s3_data" style="display:none">Session 3: &nbsp;</h5>
+                                        <h5 id="s3" style="color: #4e73df"></h5>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="mb-3 centered" id="buttons_div" style="display:inline;">
+                            <button id="download_dashboard" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modaldownloadsessiondata"><i class="fas fa-download"></i>  Download Flexo-Extension Dashboard </button> 
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <button id="download_csv" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modaldownloadsessiondata"><i class="fas fa-download"></i>  Download Study Case Data (.xlsx)</button> 
+
+                        </div>
+                        
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <!-- TABS PARA LA NEVEGACION DE LAS DIFERENTES TABLAS-->
+                        <ul class="nav nav-tabs" id="myTab_graphs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="flexext_tab" data-toggle="tab" href="#flexext" role="tab" aria-controls="flexext" aria-selected="true" style="display:none">  FLEXOEXTENSION </a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link " id="rotacion_tab" data-toggle="tab" href="#rotacion" role="tab" aria-controls="rotacion" aria-selected="false" style="display:none">  ROTACIÓN </a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link " id="inclinacion_tab" data-toggle="tab" href="#inclinacion" role="tab" aria-controls="inclinacion" aria-selected="false" style="display:none"> INCLINACIÓN </a>
+                            </li>
+                        </ul>
+                        <!-- TABS CONTENT-->
+                        <div class="tab-content">
+                            <!-- FLEXOEXTENSION -->
+                            <div class="tab-pane fade show active" id="flexext" role="tabpanel">
+                                <div id="flexext_card" class="card shadow mb-4">
+                                    <div>
+                                        <br>
+                                        <div style="display:inline">
+                                            <div class= "mb-3 d-flex centered ">
+                                                <div id="flexext" class="row mb-3" style="width:100%;">
+                                                    <div class="col-lg-10 mx-auto">
+                                                        <div class="card mb-3">
+                                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                                <h5 id= "graph" class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> Flexo-Extensión </h5>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="chart-area" >
+                                                                    <div id="alfa">
+                                                                        <canvas id="alfa_chart"></canvas>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3" style="width:80%;">
+                                                    <div class="col-lg-10 mx-auto">
+                                                        <div class="card mb-3">
+                                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                                <h5 id= "graph" class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> Angular Velocity</h5>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="chart-area" >
+                                                                    <div id="alfa">
+                                                                        <canvas id="alfa_angular_velocity_chart"></canvas>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div style="display:inline">
+                                            <div class= "mb-3 d-flex centered ">
+                                                <div>
+                                                    <div class="mb-3 d-flex centered ">
+
+                                                        <div class="card mb-3">
+                                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                                <h5 id= "flexext_positive" class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> Flexion </h5>
+                                                            </div>
+                                                            <div class="table-responsive ">
+                                                                <style>
+                                                                    .table.dataTable  {
+                                                                    font-family: Verdana, Geneva, Tahoma, sans-serif;
+                                                                    font-size: 13px;
+                                                                    }
+                                                                </style>
+                                                                <table id="sessionsList" class="table table-bordered table-hover table-striped">
+                                                                    <thead class="thead-light">
+                                                                        <tr>
+                                                                            <th scope="col">AMax.</th>
+                                                                            <th scope="col">AMed.</th> 
+                                                                            <th scope="col">ADev.</th>
+                                                                            <th scope="col">ACoef.</th>
+                                                                            <th scope="col">Vmed.perfe</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="flexext_angles_flexion_body" align="center">
+                                                                    
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card mb-3">
+                                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                                <h5 id= "flexext_negative" class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> Extension </h5>
+                                                            </div>
+                                                            <div class="table-responsive ">
+                                                                <style>
+                                                                    .table.dataTable  {
+                                                                    font-family: Verdana, Geneva, Tahoma, sans-serif;
+                                                                    font-size: 13px;
+                                                                    }
+                                                                </style>
+                                                                <table id="sessionsList" class="table table-bordered table-hover table-striped">
+                                                                    <thead class="thead-light">
+                                                                        <tr>
+                                                                            <th scope="col">AMax.</th>
+                                                                            <th scope="col">AMed.</th> 
+                                                                            <th scope="col">ADev.</th>
+                                                                            <th scope="col">ACoef.</th>
+                                                                            <th scope="col">Vmed.perfe</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                     <tbody id="flexext_angles_extension_body" align="center">
+                                                                    
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card mb-3">
+                                                        <div class="card-header d-flex justify-content-between align-items-center">
+                                                            <h5 id= "graph" class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> Ranges Of Work </h5>
+                                                        </div>
+                                                        <div class="table-responsive ">
+                                                            <style>
+                                                                .table.dataTable  {
+                                                                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                                                                font-size: 13px;
+                                                                }
+                                                            </style>
+                                                            <table id="sessionsList" class="table table-bordered table-hover table-striped" align="center">
+                                                                <thead class="thead-light">
+                                                                    <tr>
+                                                                        <th class="text-center" scope="col"> Flexion</th>
+                                                                        <th class="text-center" scope="col"> Extension </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id="flexext_body" align="center">
+                                                                    
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3" style="width:40%;">
+                                                    <div class="col-lg-10 mx-auto">
+                                                        <div class="card mb-3" id="card_AV_alfa">
+                                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                                <h5 id= "graph" class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> Movement </h5>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="chart-area" >
+                                                                    <div id="alfa">
+                                                                        <canvas id="alfa_bars_chart"></canvas>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ROTACION -->
+                            <div class="tab-pane fade" id="rotacion" role="tabpanel">
+                                <div id="rotacion_card" class="card shadow mb-4" >
+                                    <div>
+                                         <br>
+                                        <div style="display:inline">
+                                            <div class= "mb-3 d-flex centered ">
+                                                <div id="rot" class="row mb-3" style="width:100%;">
+                                                    <div class="col-lg-10 mx-auto">
+                                                        <div class="card mb-3">
+                                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                                <h5 id= "graph" class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> Rotation </h5>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="chart-area" >
+                                                                    <div id="beta">
+                                                                        <canvas id="beta_chart"></canvas>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3" style="width:80%;">
+                                                    <div class="col-lg-10 mx-auto">
+                                                        <div class="card mb-3" id="card_AV_beta">
+                                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                                <h5 id= "graph" class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> Angular Velocity</h5>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="chart-area" >
+                                                                    <div id="alfa">
+                                                                        <canvas id="beta_angular_velocity_chart"></canvas>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div>
+                                        <div style="display:inline">
+                                            <div class= "mb-3 d-flex centered ">
+                                                <div>
+                                                    <div class="mb-3 d-flex centered ">
+
+                                                        <div class="card mb-3">
+                                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                                <h5 id= "rot_positive" class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> Left </h5>
+                                                            </div>
+                                                            <div class="table-responsive ">
+                                                                <style>
+                                                                    .table.dataTable  {
+                                                                    font-family: Verdana, Geneva, Tahoma, sans-serif;
+                                                                    font-size: 13px;
+                                                                    }
+                                                                </style>
+                                                                <table id="sessionsList" class="table table-bordered table-hover table-striped">
+                                                                    <thead class="thead-light">
+                                                                        <tr>
+                                                                            <th scope="col">AMax.</th>
+                                                                            <th scope="col">AMed.</th> 
+                                                                            <th scope="col">ADev.</th>
+                                                                            <th scope="col">ACoef.</th>
+                                                                            <th scope="col">Vmed.perfe</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="rot_angles_left_body" align="center">
+                                                                    
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card mb-3">
+                                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                                <h5 id= "rot_negative" class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> Right </h5>
+                                                            </div>
+                                                            <div class="table-responsive ">
+                                                                <style>
+                                                                    .table.dataTable  {
+                                                                    font-family: Verdana, Geneva, Tahoma, sans-serif;
+                                                                    font-size: 13px;
+                                                                    }
+                                                                </style>
+                                                                <table id="sessionsList" class="table table-bordered table-hover table-striped">
+                                                                    <thead class="thead-light">
+                                                                        <tr>
+                                                                            <th scope="col">AMax.</th>
+                                                                            <th scope="col">AMed.</th> 
+                                                                            <th scope="col">ADev.</th>
+                                                                            <th scope="col">ACoef.</th>
+                                                                            <th scope="col">Vmed.perfe</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="rot_angles_right_body" align="center">
+                                                                    
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card mb-3">
+                                                        <div class="card-header d-flex justify-content-between align-items-center">
+                                                            <h5 id= "graph" class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> Ranges Of Work </h5>
+                                                        </div>
+                                                        <div class="table-responsive ">
+                                                            <style>
+                                                                .table.dataTable  {
+                                                                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                                                                font-size: 13px;
+                                                                }
+                                                            </style>
+                                                            <table id="sessionsList" class="table table-bordered table-hover table-striped" align="center">
+                                                                <thead class="thead-light">
+                                                                    <tr>
+                                                                        <th class="text-center" scope="col"> Left</th>
+                                                                        <th class="text-center" scope="col"> Right </th>
+                                                                    </tr>
+                                                                    
+                                                                </thead>
+                                                                <tbody id="rot_body" align="center">
+                                                                    
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3" style="width:40%;">
+                                                    <div class="col-lg-10 mx-auto">
+                                                        <div class="card mb-3">
+                                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                                <h5 id= "graph" class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> Movement </h5>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="chart-area" >
+                                                                    <div id="alfa">
+                                                                        <canvas id="beta_bars_chart"></canvas>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- INCLINACION -->
+                            <div class="tab-pane fade" id="inclinacion" role="tabpanel">
+                                <div id="inclinacion_card" class="card shadow mb-4" >
+                                    <br>
+                                    <div style="display:inline">
+                                        <div class= "mb-3 d-flex centered ">
+                                            <div id="rot" class="row mb-3" style="width:100%;">
+                                                <div class="col-lg-10 mx-auto">
+                                                    <div class="card mb-3">
+                                                        <div class="card-header d-flex justify-content-between align-items-center">
+                                                            <h5 id= "graph" class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> Inclination </h5>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="chart-area" >
+                                                                <div id="gamma">
+                                                                    <canvas id="gamma_chart"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3" style="width:80%;">
+                                                <div class="col-lg-10 mx-auto">
+                                                    <div class="card mb-3">
+                                                        <div class="card-header d-flex justify-content-between align-items-center">
+                                                            <h5 id= "graph" class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> Angular Velocity</h5>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="chart-area" >
+                                                                <div id="alfa">
+                                                                    <canvas id="gamma_angular_velocity_chart"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div>
+                                        <div style="display:inline">
+                                            <div class= "mb-3 d-flex centered ">
+                                                <div>
+                                                    <div class="mb-3 d-flex centered ">
+
+                                                        <div class="card mb-3">
+                                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                                <h5 id= "inc_positive" class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> Left </h5>
+                                                            </div>
+                                                            <div class="table-responsive ">
+                                                                <style>
+                                                                    .table.dataTable  {
+                                                                    font-family: Verdana, Geneva, Tahoma, sans-serif;
+                                                                    font-size: 13px;
+                                                                    }
+                                                                </style>
+                                                                <table id="sessionsList" class="table table-bordered table-hover table-striped">
+                                                                    <thead class="thead-light">
+                                                                        <tr>
+                                                                            <th scope="col">AMax.</th>
+                                                                            <th scope="col">AMed.</th> 
+                                                                            <th scope="col">ADev.</th>
+                                                                            <th scope="col">ACoef.</th>
+                                                                            <th scope="col">Vmed.perfe</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="inc_angles_left_body" align="center">
+                                                                    
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card mb-3">
+                                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                                <h5 id= "inc_negative" class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> Right </h5>
+                                                            </div>
+                                                            <div class="table-responsive ">
+                                                                <style>
+                                                                    .table.dataTable  {
+                                                                    font-family: Verdana, Geneva, Tahoma, sans-serif;
+                                                                    font-size: 13px;
+                                                                    }
+                                                                </style>
+                                                                <table id="sessionsList" class="table table-bordered table-hover table-striped">
+                                                                    <thead class="thead-light">
+                                                                        <tr>
+                                                                            <th scope="col">AMax.</th>
+                                                                            <th scope="col">AMed.</th> 
+                                                                            <th scope="col">ADev.</th>
+                                                                            <th scope="col">ACoef.</th>
+                                                                            <th scope="col">Vmed.perfe</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="inc_angles_right_body" align="center">
+                                                                    
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card mb-3">
+                                                        <div class="card-header d-flex justify-content-between align-items-center">
+                                                            <h5 id= "graph" class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> Ranges Of Work </h5>
+                                                        </div>
+                                                        <div class="table-responsive ">
+                                                            <style>
+                                                                .table.dataTable  {
+                                                                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                                                                font-size: 13px;
+                                                                }
+                                                            </style>
+                                                            <table id="flexext_ranges_table" class="table table-bordered table-hover table-striped">
+                                                                <thead class="thead-light">
+                                                                    <tr>
+                                                                        <th class="text-center" scope="col"> Left</th>
+                                                                        <th class="text-center" scope="col"> Right </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id="inc_body" align="center">
+                                                                    
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3" style="width:40%;">
+                                                    <div class="col-lg-10 mx-auto">
+                                                        <div class="card mb-3">
+                                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                                <h5 id= "graph" class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> Movement </h5>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="chart-area" >
+                                                                    <div id="alfa">
+                                                                        <canvas id="gamma_bars_chart"></canvas>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 				</center>            
             </div>
             <footer class="bg-white sticky-footer">
@@ -122,6 +590,7 @@
     <script src="assets/js/cdnjscloudflareAjaxLibsChartjs280Chart.bundle.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/cdnjsCloudflareAjaxLibsJquery-easing141Jquery.easing.js"></script>
+    <script src="assets/js/html2canvas.min.js"></script>
     <script src="socket.io/socket.io.js"></script>
     <script src="summary.js"></script>
 

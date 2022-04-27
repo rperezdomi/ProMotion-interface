@@ -35,9 +35,9 @@
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
                 <nav class="navbar navbar-light navbar-expand shadow mb-4 topbar static-top" style="background-color: #4e73df;">
-					<button class="btn-noStyle"><a href="users.html"><span style="color: white"><i class="fas fa-arrow-left fa-3x"></i></span></a></button>
+					<button class="btn-noStyle"><a href="ProMotion_settings.html"><span style="color: white"><i class="fas fa-arrow-left fa-3x"></i></span></a></button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<span style="color: white"><b>BACK</b> </span>
+					<span style="color: white"><b>BACK</b></span>
                     <div class="container-fluid">
                         <ul class="nav navbar-nav flex-nowrap ml-auto">
                             <div class="d-none d-sm-block topbar-divider"></div>
@@ -54,87 +54,101 @@
                 </div>
                 <center>
 					<div class="mb-3 d-flex centered">
-						<button class="btn btn-primary " value="off" id="connect_imu" type="submit" style="margin:5px; background: #4e73df; border-color: #0968e4; "> Conectar IMU</button>
+						<!--<button class="btn btn-primary " value="off" id="connect_imu2" type="submit" style="margin:5px; background: #4e73df; border-color: #0968e4; display:none"> Conectar Sensor 2</button>-->
+						<button class="btn btn-primary " value="off" id="connection_status" disabled=true type="submit" style="margin:5px; background: #4e73df"; border-color: #4e73df"> Connection status: connecting... </button>
 					</div>
 						
 					<div class="mb-3 d-flex centered">
-						<button class="btn btn-primary " value="off" id="record" type="submit" disabled=true style="margin:5px; background: #808080; border-color: #0968e4;"> Iniciar Grabación</button>
-						<button class="btn btn-primary " value="off" id="stop" type="submit" disabled=true  style="margin:5px; background: #808080; border-color: #0968e4; "> Parar Grabación</button>
-						<button class="btn btn-primary " value="off" id="save" type="submit" disabled=true  style="margin:5px; background: #808080; border-color: #0968e4; "> Descargar </button>
+						<button class="btn btn-primary " value="off" id="record" type="submit" disabled=true style="margin:5px; background: #808080; border-color: #0968e4;"> Start Recording</button>
+						<button class="btn btn-primary " value="off" id="stop" type="submit" disabled=true  style="margin:5px; background: #808080; border-color: #0968e4; "> Stop Recording</button>
+						<button class="btn btn-primary " value="off" id="save" type="submit" disabled=true  style="margin:5px; background: #808080; border-color: #0968e4; "> Save </button>
+						<button class="btn btn-primary " value="off" id="go_to_dashboard" type="submit" style="margin:5px; background: #4e73df; border-color: #0968e4; display:none"> See Dashboard </button>
+                        
 					</div>
 					
 					<div class="mb-3 d-flex centered">
-						<button class="btn btn-primary " value="off" id="calibrate" type="submit" style="margin:5px; background: #4e73df; border-color: #0968e4; display:none"> Calibrar </button>
+						<button class="btn btn-primary " value="off" id="connect_disconnect_sensor" type="button" style="margin:5px; display:none; "> Connect Sensor</button>
+						<button class="btn btn-primary " value="off" id="calibrate" type="submit" style="margin:5px;  border-color: #0968e4; display:none"> Calibrar </button>
 					</div>
 					
 					<!-- GRAPHS -->
 					<div id="jointCharts" class="card shadow mb-4">
+                        <br>
+                        <h4 id="joint"><span style="color: #4e73df"></span></h4>
 						<div class="container-fluid">
-							<br>
-							<div class= "mb-3 d-flex centered ">
-
-								<div class="row mb-3" style="width:80%;">
-									<div class="col-lg-10 mx-auto">
-										<div class="card mb-3">
-											<div class="card-header d-flex justify-content-between align-items-center">
-												<h5 class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> Flexo-Extensión </h5>
-											</div>
-											<div class="card-body">
-												<div class="chart-area" >
-													<div id="alfa">
-														<canvas id="alfa_chart"></canvas>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<img class="img" src="assets/img/logocpw.png" >
-							</div>
-							<div class= "mb-3 d-flex centered ">
-
-								<div class="row mb-3" style="width:80%;">
-									<div class="col-lg-10 mx-auto">
-										<div class="card mb-3">
-											<div class="card-header d-flex justify-content-between align-items-center">
-												<h5 class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;">Rotación</h5>
-											</div>
-											<div class="card-body">
-												<div class="chart-area" >
-													<div id="beta">
-														<canvas id="beta_chart"></canvas>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<img class="img" src="assets/img/logocpw.png">
-							</div>
-							<div class= "mb-3 d-flex centered ">
-
-								<div class="row mb-3" style="width:80%;">
-									<div class="col-lg-10 mx-auto">
-										<div class="card mb-3">
-											<div class="card-header d-flex justify-content-between align-items-center">
-												<h5 class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;">Inclinación</h5>
-											</div>
-											<div class="card-body">
-												<div class="chart-area" >
-													<div id="gamma">
-														<canvas id="gamma_chart"></canvas>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<img class="img" src="assets/img/logocpw.png" >
-							</div>
 							
+                            <div id="flexext" style="display:inline">
+                                <div class= "mb-3 d-flex centered ">
+                                    <div class="row mb-3" style="width:80%;">
+                                        <div class="col-lg-10 mx-auto">
+                                            <div class="card mb-3">
+                                                <div class="card-header d-flex justify-content-between align-items-center">
+                                                    <h5 id= "graph" class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;"> Flexion/Extension </h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="chart-area" >
+                                                        <div id="alfa">
+                                                            <canvas id="alfa_chart"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <img class="img" src="assets/img/logocpw.png" >
+                                </div>
+                            </div>
+							<div id="rotacion" style="display:none">
+                                <div class= "mb-3 d-flex centered ">
+        
+                                    <div class="row mb-3" style="width:80%;">
+                                        <div class="col-lg-10 mx-auto">
+                                            <div class="card mb-3">
+                                                <div class="card-header d-flex justify-content-between align-items-center">
+                                                    <h5 class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;">Rotación</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="chart-area" >
+                                                        <div id="beta">
+                                                            <canvas id="beta_chart"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img class="img" src="assets/img/logocpw.png">
+                                </div>
+                            </div>
+                            <div id="inclinacion" style="display:none">
+                                <div class= "mb-3 d-flex centered ">
+                                    <div class="row mb-3" style="width:80%;">
+                                        <div class="col-lg-10 mx-auto">
+                                            <div class="card mb-3">
+                                                <div class="card-header d-flex justify-content-between align-items-center">
+                                                    <h5 class="text-primary font-weight-bold m-0" style="width:100%;text-align: center;">Inclinación</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="chart-area" >
+                                                        <div id="gamma">
+                                                            <canvas id="gamma_chart"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img class="img" src="assets/img/logocpw.png" >
+                                </div>
+							</div>
 						</div>
+                        <div class="mb-3 d-flex centered">
+                            <button class="btn btn-primary " value="1" id="next" type="submit" style="margin:5px; background: #4e73df; border-color: #0968e4 ;"> Next </button>
+                        </div>
 					</div>
+                    
+                    
 				</center>            
             </div>
             <footer class="bg-white sticky-footer">
